@@ -1,0 +1,58 @@
+type Book {
+	id: ID
+    title: String
+    author: String
+}
+
+type User {
+	usrId: ID
+    name: String
+    email: String
+    phone: String
+    password: String
+}
+
+input UserInput {
+	name: String
+    email: String
+    phone: String
+    password: String
+}
+
+type Product{
+    id: ID,
+    name:String
+    category:String
+    price:Float
+    stock:Int
+}
+
+type Order {
+	orderId: ID
+    orderDetail: String
+    address: String
+    price: String
+}
+
+type Query {
+    getBooks: [Book]
+    getBookById(id: ID!): Book
+    getProducts:[Product]
+    getProductsByCategory(category:String):[Product]
+    
+    getMessage: String
+}
+
+type Mutation {
+    createBook(title: String!, author: String!): Book
+    createUser(name:String, phone:String, email:String, password:String): User
+    createUsers(user: UserInput!): User
+     updateStock(id:ID,stock:Int):Product
+    receiveNewShipment(id:ID,quantity:Int):Product
+    
+    sendMessage(message: String!): String
+}
+
+type Subscription {
+    messageStream: String
+}
